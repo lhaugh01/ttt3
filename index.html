@@ -69,7 +69,7 @@
     <button id="start-game">Start Game</button>
     <script>
         let currentPlayer = Math.random() > 0.5 ? 'X' : 'O';
-        let gameStart = true;
+        let gameStart = false;
         const turnIndicator = document.querySelector('.turn-indicator');
         const squares = document.querySelectorAll('.square');
         const startGameButton = document.getElementById('start-game');
