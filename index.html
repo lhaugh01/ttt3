@@ -60,45 +60,37 @@
             id = "sq"+i;
             document.write( "<div class='square' id='" + id + "'></div>" );
             }
-
-            
-                
         </script>
     </div>
     <div class = "win-indicator"> Good luck in your game!</div>
     <button id="start-game">Start Game</button>
     <script>
-        let currentPlayer = Math.random() > 0.5 ? 'X' : 'O';
+        let currentPlayer = Math.random() > 0.5 ? 'X' : 'O'; //randomizes player
         let gameStart = false;
         const turnIndicator = document.querySelector('.turn-indicator');
         const squares = document.querySelectorAll('.square');
         const startGameButton = document.getElementById('start-game');
         
-        function handleSquareClick(event) {
-            if (!gameActive) return;
+        function selectSquare(event) {
+            if (!gameActive) return; //makes it so that it only works when game starts
             const square = event.target;
             const squareIndex = Array.from(square.parentNode.children).indexOf(square);
-            
-            if (square.textContent !== '') return; // Prevent changing filled squares
-
-            square.textContent = currentPlayer;
+            if (square.textContent !== '') return; //makes sure the box is empty
+            square.textContent = currentPlayer;  //sets box to correct player
             alert('Square number: ' + squareIndex);
-
-            // Alternate turns
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; //switches players
             turnIndicator.textContent = currentPlayer + "'s Turn";
         }
 
         function startGame() {
-            squares.forEach(square => square.textContent = '');
-            currentPlayer = Math.random() > 0.5 ? 'X' : 'O';
-            turnIndicator.textContent = currentPlayer + "'s Turn";
+            squares.forEach(square => square.textContent = ''); //clears all squares
+            currentPlayer = Math.random() > 0.5 ? 'X' : 'O'; //randomizes player
+            turnIndicator.textContent = currentPlayer + "'s Turn"; 
             gameActive = true;
         }
-
-        squares.forEach(square => square.addEventListener('click', handleSquareClick));
-        startGameButton.addEventListener('click', startGame);
         
+        squares.forEach(square => square.addEventListener('click', selectSquare)); // sets up the game so that they can all be clicked
+        startGameButton.addEventListener('click', startGame); //makes the button clickable
         startGame();
     </script>
 </body>
